@@ -1,21 +1,21 @@
-﻿ID_PAIS;PAIS ENG;PAIS;ID_CONTINENTE;ID_LOCACION;BANDERA;;;
-1;USA;ESTADOS UNIDOS;2;840;https://upload.wikimedia.org/wikipedia/commons/a/a4/Flag_of_the_United_States.svg;;;
-2;CANADA;CANADÁ;2;124;https://upload.wikimedia.org/wikipedia/commons/thumb/d/d9/Flag_of_Canada_%28Pantone%29.svg/800px-Flag_of_Canada_%28Pantone%29.svg.png;;;
-3;ARGENTINA;ARGENTINA;1;032;https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/Flag_of_Argentina.svg/1200px-Flag_of_Argentina.svg.png;;;
-4;BRAZIL;BRASIL;1;076;https://img.freepik.com/vector-gratis/ilustracion-bandera-brasil_53876-27017.jpg;;;
-5;PARAGUAY;PARAGUAY;1;600;https://upload.wikimedia.org/wikipedia/commons/thumb/9/98/Flag_of_Paraguay_%281842-1954%29.svg/270px-Flag_of_Paraguay_%281842-1954%29.svg.png;;;
-6;SPAIN;ESPAÑA;4;724;https://upload.wikimedia.org/wikipedia/commons/thumb/8/89/Bandera_de_Espa%C3%B1a.svg/1200px-Bandera_de_Espa%C3%B1a.svg.png;;;
-7;ITALY;ITALIA;4;380;https://upload.wikimedia.org/wikipedia/commons/thumb/0/03/Flag_of_Italy.svg/640px-Flag_of_Italy.svg.png;;;
-8;SWEDEN;SUECIA;4;752;https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Flag_of_Sweden.svg/1280px-Flag_of_Sweden.svg.png;;;
-9;NORWAY;NORUEGA;4;578;https://upload.wikimedia.org/wikipedia/commons/thumb/d/d9/Flag_of_Norway.svg/800px-Flag_of_Norway.svg.png;;;
-10;ICELAND;ISLANDIA;4;352;https://static.vecteezy.com/system/resources/previews/011/009/313/non_2x/flag-of-iceland-national-iceland-flag-sign-vector.jpg;;;
-11;AUSTRALIA;AUSTRALIA;7;036;https://upload.wikimedia.org/wikipedia/commons/8/88/Flag_of_Australia_%28converted%29.svg;;;
-12;NEW ZELAND;NUEVA ZELANDA;7;554;https://upload.wikimedia.org/wikipedia/commons/3/3e/Flag_of_New_Zealand.svg;;;
-13;GREECE;GRECIA;4;300;https://i.ytimg.com/vi/opRGC9BkUxQ/maxresdefault.jpg;;;
-14;SOUTH AFRICA;SUDÁFRICA;6;710;https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSs0mExTcFnRWdA5Ox5jTLyZHgqF5ACnsu2BgjFu_7mZIKEo7zlH1Q8Bc3v3vCorLtb7-s&usqp=CAU;;;
-15;EGYPT;EGIPTO;6;818;https://astelus.com/wp-content/viajes/bandera-de-egipto.png;;;
-16;NIGERIA;NIGERIA;6;566;https://upload.wikimedia.org/wikipedia/commons/thumb/7/79/Flag_of_Nigeria.svg/1200px-Flag_of_Nigeria.svg.png;;;
-17;CHINA;CHINA;5;156;https://static.vecteezy.com/system/resources/previews/005/882/915/non_2x/chinese-national-flag-free-vector.jpg;;;
-18;JAPAN;JAPÓN;5;392;https://upload.wikimedia.org/wikipedia/commons/thumb/9/9e/Flag_of_Japan.svg/1200px-Flag_of_Japan.svg.png;;;
-19;INDIA;INDIA;5;356;https://upload.wikimedia.org/wikipedia/commons/thumb/4/41/Flag_of_India.svg/200px-Flag_of_India.svg.png;;;
-20;HONDURAS;HONDURAS;3;340;https://upload.wikimedia.org/wikipedia/commons/thumb/8/82/Flag_of_Honduras.svg/2560px-Flag_of_Honduras.svg.png;;;
+﻿ID_PAIS;PAIS ENG;PAIS;ID_CONTINENTE;ID_LOCACION;BANDERA
+1;USA;ESTADOS UNIDOS;2;840;https://upload.wikimedia.org/wikipedia/commons/a/a4/Flag_of_the_United_States.svg
+2;CANADA;CANADÁ;2;124;https://upload.wikimedia.org/wikipedia/commons/thumb/d/d9/Flag_of_Canada_%28Pantone%29.svg/800px-Flag_of_Canada_%28Pantone%29.svg.png
+3;ARGENTINA;ARGENTINA;1;32;https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/Flag_of_Argentina.svg/1200px-Flag_of_Argentina.svg.png
+4;BRAZIL;BRASIL;1;76;https://img.freepik.com/vector-gratis/ilustracion-bandera-brasil_53876-27017.jpg
+5;PARAGUAY;PARAGUAY;1;600;https://upload.wikimedia.org/wikipedia/commons/thumb/9/98/Flag_of_Paraguay_%281842-1954%29.svg/270px-Flag_of_Paraguay_%281842-1954%29.svg.png
+6;SPAIN;ESPAÑA;4;724;https://upload.wikimedia.org/wikipedia/commons/thumb/8/89/Bandera_de_Espa%C3%B1a.svg/1200px-Bandera_de_Espa%C3%B1a.svg.png
+7;ITALY;ITALIA;4;380;https://upload.wikimedia.org/wikipedia/commons/thumb/0/03/Flag_of_Italy.svg/640px-Flag_of_Italy.svg.png
+8;SWEDEN;SUECIA;4;752;https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Flag_of_Sweden.svg/1280px-Flag_of_Sweden.svg.png
+9;NORWAY;NORUEGA;4;578;https://upload.wikimedia.org/wikipedia/commons/thumb/d/d9/Flag_of_Norway.svg/800px-Flag_of_Norway.svg.png
+10;ICELAND;ISLANDIA;4;352;https://static.vecteezy.com/system/resources/previews/011/009/313/non_2x/flag-of-iceland-national-iceland-flag-sign-vector.jpg
+11;AUSTRALIA;AUSTRALIA;7;36;https://upload.wikimedia.org/wikipedia/commons/8/88/Flag_of_Australia_%28converted%29.svg
+12;NEW ZELAND;NUEVA ZELANDA;7;554;https://upload.wikimedia.org/wikipedia/commons/3/3e/Flag_of_New_Zealand.svg
+13;GREECE;GRECIA;4;300;https://i.ytimg.com/vi/opRGC9BkUxQ/maxresdefault.jpg
+14;SOUTH AFRICA;SUDÁFRICA;6;710;https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSs0mExTcFnRWdA5Ox5jTLyZHgqF5ACnsu2BgjFu_7mZIKEo7zlH1Q8Bc3v3vCorLtb7-s&usqp=CAU
+15;EGYPT;EGIPTO;6;818;https://astelus.com/wp-content/viajes/bandera-de-egipto.png
+16;NIGERIA;NIGERIA;6;566;https://upload.wikimedia.org/wikipedia/commons/thumb/7/79/Flag_of_Nigeria.svg/1200px-Flag_of_Nigeria.svg.png
+17;CHINA;CHINA;5;156;https://static.vecteezy.com/system/resources/previews/005/882/915/non_2x/chinese-national-flag-free-vector.jpg
+18;JAPAN;JAPÓN;5;392;https://upload.wikimedia.org/wikipedia/commons/thumb/9/9e/Flag_of_Japan.svg/1200px-Flag_of_Japan.svg.png
+19;INDIA;INDIA;5;356;https://upload.wikimedia.org/wikipedia/commons/thumb/4/41/Flag_of_India.svg/200px-Flag_of_India.svg.png
+20;HONDURAS;HONDURAS;3;340;https://upload.wikimedia.org/wikipedia/commons/thumb/8/82/Flag_of_Honduras.svg/2560px-Flag_of_Honduras.svg.png
