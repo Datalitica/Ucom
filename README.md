@@ -16,12 +16,13 @@ Este repositorio está diseñado para servir como un recurso para los estudiante
 
 Todos los materiales en este repositorio están disponibles bajo la [Licencia MIT](LICENSE), lo que significa que puedes utilizarlos libremente para fines educativos y personales.
 
+<img align="center" alt="GIF" src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExY212c3oycGVvbWJyZDBrd3QyeHRra3Rrb2NqbzRwbDJxeTJ4Y3VzZiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/aQwvKKi4Lv3t63nZl9/giphy-downsized.gif" width = "100" >
+
 ## ¡Comienza a Explorar!
 
-Ante cualquier duda no dudes en contactarnos
+Ante cualquier duda no dudes en contactarnos.
 <!-- Your badges -->
 [![Linkedin](https://img.shields.io/badge/-Mathias_Chaparro-blue?style=flat&logo=Linkedin&logoColor=white)](https://www.linkedin.com/in/mathias-chaparro-duarte/)
 [![Linkedin](https://img.shields.io/badge/-Juan_Pablo_Bazan-blue?style=flat&logo=Linkedin&logoColor=white)](https://www.linkedin.com/in/jpbazan/)
 
 <img align="center" alt="GIF" src="https://media.giphy.com/media/13HgwGsXF0aiGY/giphy.gif" />
-
