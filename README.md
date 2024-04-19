@@ -8,9 +8,9 @@ Este repositorio está diseñado para servir como un recurso para los estudiante
 
 ## Contenido
 
-- **Apuntes y materiales de estudio:**
-- **Ejemplos y archivos resueltos:** 
-- **Recursos adicionales, enlaces externos:** 
+- **Apuntes y materiales de estudio**
+- **Ejemplos y archivos resueltos** 
+- **Recursos adicionales, enlaces externos** 
 
 ## Licencia
 
