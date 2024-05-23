@@ -8,7 +8,7 @@ Este repositorio está diseñado para servir como un recurso para los estudiante
 
 ## Contenido
 
-- [**Apuntes y materiales de estudio**](https://github.com/Datalitica/Ucom/tree/main/MaterialesTeoricos)
+- [**Materiales de estudio y enlaces útiles**](https://github.com/Datalitica/Ucom/tree/main/MaterialesTeoricos)
 - **Ejemplos y archivos resueltos** 
 
 ## Licencia
