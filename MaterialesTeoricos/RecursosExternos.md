@@ -6,6 +6,6 @@
 4. [Generador de Temas para PBI](https://powerbithemegenerator.bibb.pro/)
 5. [Página de ejemplos de tableros](https://www.novypro.com/projects)
 6. [Galería oficial de Microsoft](https://community.fabric.microsoft.com/t5/Themes-Gallery/bd-p/ThemesGallery)
-7- [Iconos para descarga](https://www.flaticon.es/)
+7. [Iconos para descarga](https://www.flaticon.es/)
 
 ¡Seguiremos sumando enlaces a medida que se desarrollen las clases! 🙌
