@@ -1,10 +1,10 @@
 <p align="center"> <img src="https://raw.githubusercontent.com/Datalitica/Ucom/39fbbffcd0a413f8c374fc5dc358bd272e8c3bf9/imagenes/UCOM_logo.png" alt= "Ucom Logo" width = "250" align="center" >
 
 # Repositorio del Diplomado en Power BI 📚 
-<img src="https://upload.wikimedia.org/wikipedia/commons/c/cf/New_Power_BI_Logo.svg" alt= "Power BI Logo" width = "80" align="center" > **Power BI:** para análisis y visualización de datos.
+<img src="https://upload.wikimedia.org/wikipedia/commons/c/cf/New_Power_BI_Logo.svg" alt= "Power BI Logo" width = "65" align="center" > **Power BI:** para análisis y visualización de datos.
 
 ## Descripción
-Este repositorio está diseñado para servir como un recurso para los estudiantes del diplomado en Power BI de la UCOM que buscan fortalecer su comprensión y dominio de los conceptos académicos. 
+Este repositorio está diseñado para servir como un recurso para los estudiantes del diplomado en Power BI de la UCOM que buscan fortalecer su comprensión y dominio de los conceptos de la herramienta. 
 
 ## Contenido
 
