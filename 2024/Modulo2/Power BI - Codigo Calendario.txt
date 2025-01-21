@@ -1,0 +1,44 @@
+let fnDateTable = (FechaInicio as date, FechaFin as date, FY_MesInicio as number) as table =>
+  let
+    Today = Date.From( DateTime.LocalNow() ),
+    DayCount = Duration.Days(Duration.From(FechaFin - FechaInicio) ) + 1,
+    Source = List.Dates(FechaInicio,DayCount,#duration(1,0,0,0)),
+    TableFromList = Table.FromList(Source, Splitter.SplitByNothing()),   
+    ChangedType = Table.TransformColumnTypes(TableFromList,{{"Column1", type date}}),
+    RenamedColumns = Table.RenameColumns(ChangedType,{{"Column1", "Date"}}),
+    FechaTexto = Table.AddColumn(RenamedColumns, "Fecha Texto", each Number.From( Date.ToText( [Date], "yyyyMMdd" ) ), Int64.Type ),
+    InsertarAño = Table.AddColumn(FechaTexto, "Año", each Date.Year([Date]), Int64.Type),
+    // Crea un valor dinamico de año llamado 'Actual' que se mueve con el año en curso. Puedes poner este valor en un filtro para tener el periodo actual.
+    InsertarAñoActual = Table.AddColumn(InsertarAño, "Año Actual", each if Date.Year( Today ) = [Año] then "Actual" else Text.From( [Year] ), type text),
+    InsertarYYYY_MM = Table.AddColumn(InsertarAñoActual, "YYYY-MM", each Date.ToText( [Date], "yyyy-MM"), type text),
+    InsertarMesAño = Table.AddColumn(InsertarAñoActual, "Mes-Año", each Date.ToText( [Date], "MMM yyyy"), type text),
+    InsertarNumeroMes = Table.AddColumn(InsertarMesAño, "Mes del Año", each Date.Month([Date]), Int64.Type),
+    InsertarNombreMes = Table.AddColumn(InsertarNumeroMes, "Nombre del mes", each Date.MonthName([Date]), type text),
+    InsertarNombreMesCorto = Table.AddColumn(InsertarNombreMes, "Nombre Mes Corto", each Date.ToText( [Date] , "MMM"), type text),
+    // Crea un valor dinamico llamado 'Actual' que se mueve con la fecha en curso. Puedes poner este valor en un filtro para tener el periodo actual.
+    InsertarMesActual = Table.AddColumn(InsertarNombreMesCorto, "Nombre Mes Actual", each if Date.Month( Today ) = [Mes del Año] then "Mes Actual" else [Nombre del mes], type text ),
+    InsertarInicioMes = Table.AddColumn(InsertarMesActual, "Inicio de mes", each Date.StartOfMonth([Date]), type date),
+    InsertarFinMes = Table.AddColumn(InsertarInicioMes, "Fin de mes", each Date.EndOfMonth( [Date] ), type date),
+    InsertarDiasEnMes = Table.AddColumn(InsertarFinMes, "Dias en el mes", each Date.DaysInMonth([Date]), Int64.Type),
+    InsertarSemanaISO = Table.AddColumn(InsertarDiasEnMes, "ISO Semana", each let
+   CurrentThursday = Date.AddDays([Date], 3 - Date.DayOfWeek([Date], Day.Monday ) ),
+   YearCurrThursday = Date.Year( CurrentThursday ),
+   FirstThursdayOfYear = Date.AddDays(#date( YearCurrThursday,1,7),- Date.DayOfWeek(#date(YearCurrThursday,1,1), Day.Friday) ),
+   ISO_Week = Duration.Days( CurrentThursday - FirstThursdayOfYear) / 7 + 1
+in ISO_Week, Int64.Type ),
+    InsertarAnhoIso = Table.AddColumn(InsertarSemanaISO, "ISO Año", each Date.Year(  Date.AddDays( [Date], 26 - [ISO Semana] ) ), Int64.Type ),
+    InsertarTrimestreNumero = Table.AddColumn(InsertarAnhoIso, "Trimestre Numero", each Date.QuarterOfYear([Date]), Int64.Type),
+    InsertarQuarter = Table.AddColumn(InsertarTrimestreNumero, "Q", each "Q" & Text.From( Date.QuarterOfYear([Date]) ), type text ),
+    InsertarAnho_Quarter = Table.AddColumn(InsertarQuarter, "Año-Q", each Text.From( Date.Year([Date]) ) & "-Q" & Text.From( Date.QuarterOfYear([Date]) ), type text ),
+    InsertarNombreDia = Table.AddColumn(InsertarAnho_Quarter, "Dia Nombre", each Date.DayOfWeekName([Date] ), type text),
+    InsertarNombreDiaCorto = Table.AddColumn( InsertarNombreDia, "Dia Nombre Corto", each Date.ToText( [Date], "ddd"), type text),
+    InsertarNumeroDiaMes = Table.AddColumn(InsertarNombreDiaCorto, "Dia del mes Numero", each Date.Day([Date]), Int64.Type),
+    // Day.Monday indica que la semana empieza el Lunes (Monday). Se puede modificar en caso que necesites que las semana inicie en otro dia diferente. 
+    InsertarDiaSemana = Table.AddColumn(InsertarNumeroDiaMes, "Dia de la semana numero", each Date.DayOfWeek( [Date], Day.Monday ), Int64.Type),
+    InsertarDiadelAnho = Table.AddColumn(InsertarDiaSemana, "Dia del año numero", each Date.DayOfYear( [Date] ), Int64.Type),
+    InsertarEsFinDeSemana = Table.AddColumn(InsertarDiadelAnho, "Is Weekend", each if Date.DayOfWeek( [Date] ) >= 5 then 1 else 0, Int64.Type ),
+    InsertarEsDiaLaboral = Table.AddColumn(InsertarEsFinDeSemana, "Is Weekday", each if Date.DayOfWeek( [Date] ) < 5 then 1 else 0, Int64.Type )
+in
+    InsertarEsDiaLaboral
+in
+    fnDateTable
