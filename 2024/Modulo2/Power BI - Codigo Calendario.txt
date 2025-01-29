@@ -20,7 +20,8 @@ let fnDateTable = (FechaInicio as date, FechaFin as date, FY_MesInicio as number
     InsertarInicioMes = Table.AddColumn(InsertarMesActual, "Inicio de mes", each Date.StartOfMonth([Date]), type date),
     InsertarFinMes = Table.AddColumn(InsertarInicioMes, "Fin de mes", each Date.EndOfMonth( [Date] ), type date),
     InsertarDiasEnMes = Table.AddColumn(InsertarFinMes, "Dias en el mes", each Date.DaysInMonth([Date]), Int64.Type),
-    InsertarSemanaISO = Table.AddColumn(InsertarDiasEnMes, "ISO Semana", each let
+    InsertarSemanaISO = Table.AddColumn(InsertarDiasEnMes, "ISO Semana", each 
+let
    CurrentThursday = Date.AddDays([Date], 3 - Date.DayOfWeek([Date], Day.Monday ) ),
    YearCurrThursday = Date.Year( CurrentThursday ),
    FirstThursdayOfYear = Date.AddDays(#date( YearCurrThursday,1,7),- Date.DayOfWeek(#date(YearCurrThursday,1,1), Day.Friday) ),
