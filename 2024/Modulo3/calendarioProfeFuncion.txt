@@ -1,0 +1,26 @@
+let fnDateTable = (FechaInicio as date, FechaFin as date) as table =>
+  let
+    Dias = Duration.Days(Duration.From(FechaFin - FechaInicio)),
+    Origen = List.Dates(FechaInicio,Dias,#duration(1,0,0,0)),
+    TableFromList = Table.FromList(Origen, Splitter.SplitByNothing()),   
+    TipoCambiado = Table.TransformColumnTypes(TableFromList,{{"Column1", type date}}),
+    ColumnasRenombradas = Table.RenameColumns(TipoCambiado,{{"Column1", "Fecha"}}),
+    InsertarAño = Table.AddColumn(ColumnasRenombradas, "Año", each Date.Year([Fecha]),type text),
+    InsertarNumeroAño = Table.AddColumn(InsertarAño, "NroAño", each Date.Year([Fecha])),
+    InsertarQ = Table.AddColumn(InsertarNumeroAño, "QdelAño", each Date.QuarterOfYear([Fecha])),
+    InsertarMes = Table.AddColumn(InsertarQ, "MesDelAño", each Date.Month([Fecha]), type text),
+    InsertarDia = Table.AddColumn(InsertarMes, "DiaDelMes", each Date.Day([Fecha])),
+    InsertarDiaInt = Table.AddColumn(InsertarDia, "FechaTexto", each [Año] * 10000 + [MesDelAño] * 100 + [DiaDelMes]),
+    InsertarNombreMes = Table.AddColumn(InsertarDiaInt, "NombreMes", each Date.ToText([Fecha], "MMMM"), type text),
+    InsertarMesCalendario = Table.AddColumn(InsertarNombreMes, "Mes_Año", each (try(Text.Range([NombreMes],0,3)) otherwise [NombreMes]) & " " & Number.ToText([Año])),
+    InsertarQtrCal = Table.AddColumn(InsertarMesCalendario, "Q_Año", each "Q" & Number.ToText([QdelAño]) & " " & Number.ToText([Año])),
+    InsertarDiaSemana = Table.AddColumn(InsertarQtrCal, "DiaSemana", each Date.DayOfWeek([Fecha])),
+    InsertarNombreDia = Table.AddColumn(InsertarDiaSemana, "NombreDia", each Date.ToText([Fecha], "dddd"), type text),
+    InsertarFinSemana = Table.AddColumn(InsertarNombreDia, "FinSemana", each Date.EndOfWeek([Fecha]), type date),
+    InsertarNroSemana= Table.AddColumn(InsertarFinSemana, "Numero Semana", each Date.WeekOfYear([Fecha])),
+    CambiarTipo = Table.TransformColumnTypes(InsertarNroSemana,{{"Numero Semana", Int64.Type},{"Año", type text}, {"DiaDelMes", Int64.Type}, {"MesDelAño", Int64.Type}, {"QdelAño", Int64.Type}, {"Mes_Año", type text}, {"Q_Año", type text}, {"DiaSemana", Int64.Type}}),
+    InsertarAñoCorto = Table.AddColumn(CambiarTipo, "AñoCorto", each Text.End(Text.From([Año]), 2), type text)
+in
+    InsertarAñoCorto
+in
+  fnDateTable

@@ -1,0 +1,41 @@
+let
+    Hoy = Date.From( DateTime.LocalNow() ),
+    //Cambiar por el campo de fecha de la tabla. Ejemplo ----> #"Date.StartOfYear"( List.Min(NombreTabla[ColumnaFecha] ) )
+    FechInicio = #date(2021,01,01), 
+    // Cambiar 'Hoy' por campo de fecha de la tabla. Ejemplo ----> #"Date.EndOfYear"( List.Max(NombreTabla[ColumnaFecha] ) )
+    FechaFin = Date.EndOfYear( Hoy ), 
+    TraducirNombresColumnas = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("bZJdboMwDMevYvG6cohqtFK30Wqi0jRVfXCLKWiQSCFo67F2hl1sTghJaMsT9u/v+PNwSDLUlCySNZ1rTI6L0QEboelCagKwpx8tLf4kNO7l32+wIaMKh1Y7PyzPesB2xPylec5k+jPeXApdp+6pnPrUP2cJbIfuZLPzDykJLIkpdqbkrexOih4wKGqp9EwBz+yRt7pQdqSMii80Kg2yAhvDso1ozk0oZyXKmK4b4VGG1x6M7VjWYA8ltdA5wabYwQfRl5haLahDgcB+z6NZe7+vyQSHksZoq3gfWEHqboh71XByrShWMZ77Tc40QJM7nSu4tZsVcHMzcrsA5tECjGqaWlRkkMZjcmLT7F1DoxZahD507wLsWT4OaAGnazPiXVX1ZIrN8DIZhtmUHsZWuCKPc0S+hYhPS/CK1292ILaxyBbpFS8YLHsBvW2bRMlw1QOfV7RlR0u8jpR7e8OTVO507XnB0/zEYqcZDg8lOR7/AQ==", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [Ingles = _t, Español = _t]),
+    ParametroIdiomas = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("i45W8sxLz0ktVtJRSs3TdfUD0s6lRUWpeSVKsTrRSq7FBYmHN+bngKSLdV2DgbRjcklpYo5SbCwA", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [Language = _t, Culture = _t, DefaultValue = _t]),
+    CultureCode = ParametroIdiomas[Culture]  { List.PositionOf( ParametroIdiomas[Language] , LenguajeCalendario ) },
+    Defaultvalue = ParametroIdiomas[DefaultValue] { List.PositionOf( ParametroIdiomas[Language] , LenguajeCalendario ) },
+    ListaDeFechas = List.Dates( FechInicio, Duration.Days( FechaFin - FechInicio ) +1, #duration( 1, 0, 0, 0 ) ),
+    ConvertirTabla = Table.FromList( ListaDeFechas, Splitter.SplitByNothing(), type table[Date = Date.Type] ),
+    InsertarFechaTexto = Table.AddColumn(ConvertirTabla, "Date Integer", each Number.From( Date.ToText( [Date], "yyyyMMdd" ) ) , Int64.Type ) ,
+    InsertarAño = Table.AddColumn(InsertarFechaTexto, "Year", each Date.Year([Date]), Int64.Type),
+    // Crea un campo dinamico llamado 'Actual/Current' de manera dinamica con la fecha de Hoy. Añadir este valor a un segmentador para tener el valor actual del periodo.
+    InsertarAñoActual = Table.AddColumn(InsertarAño, "Year Default", each if Date.Year( Hoy ) = [Year] then Defaultvalue else Text.From( [Year] ), type text),
+    #"InsertarYYYY-MM" = Table.AddColumn(InsertarAñoActual, "YYYY-MM", each Date.ToText( [Date], "yyyy-MM"), type text),
+    #"InsertarMes-Año" = Table.AddColumn(#"InsertarYYYY-MM", "Month-Year", each Text.Proper( Date.ToText( [Date], "MMM yyyy", CultureCode ) ), type text),
+    InsertarNumeroMes = Table.AddColumn(#"InsertarMes-Año", "Month Number", each Date.Month([Date]), Int64.Type),
+    InsertarNombreMes = Table.AddColumn(InsertarNumeroMes, "Month Name", each Text.Proper( Date.MonthName([Date], CultureCode ) ), type text),
+    InsertarNombreMesCorto = Table.AddColumn(InsertarNombreMes, "Month Name Short", each Text.Proper( Date.ToText( [Date] , "MMM", CultureCode ) ), type text),
+    // Crea un campo dinamico llamado 'Actual/Current' de manera dinamica con la fecha de Hoy. Añadir este valor a un segmentador para tener el valor actual del periodo.
+    InsertarNombreMesActual = Table.AddColumn(InsertarNombreMesCorto, "Month Name Default", each if Date.Month( Hoy ) = [Month Number] then Defaultvalue else [Month Name], type text ),
+    InsertarInicioMes = Table.AddColumn(InsertarNombreMesActual, "Start of Month", each Date.StartOfMonth([Date]), type date),
+    InsertarFinMes = Table.AddColumn(InsertarInicioMes, "End of Month", each Date.EndOfMonth( [Date] ), type date),
+    InsertarDiasDelMes = Table.AddColumn(InsertarFinMes, "Days in Month", each Date.DaysInMonth([Date]), Int64.Type),
+    InsertarInicioSemana = Table.AddColumn(InsertarDiasDelMes, "Start of Week", each Date.StartOfWeek([Date], Day.Monday ), type date),
+    InsertarNumeroQ = Table.AddColumn(InsertarInicioSemana, "Quarter Number", each Date.QuarterOfYear([Date]), Int64.Type),
+    InsertarQ = Table.AddColumn(InsertarNumeroQ, "Quarter", each "Q" & Text.From( Date.QuarterOfYear([Date]) ), type text ),
+    #"InsertarAño-Quarter" = Table.AddColumn(InsertarQ, "Year-Quarter", each Text.From( Date.Year([Date]) ) & "-Q" & Text.From( Date.QuarterOfYear([Date]) ), type text ),
+    InsertarNombreDia = Table.AddColumn(#"InsertarAño-Quarter", "Day Name", each Text.Proper( Date.DayOfWeekName([Date], CultureCode ) ), type text),
+    InsertarNombreDiaCorto = Table.AddColumn( InsertarNombreDia, "Day Name Short", each Text.Proper( Date.ToText( [Date], "ddd", CultureCode ) ), type text),
+    InsertarDiaMesNumero = Table.AddColumn(InsertarNombreDiaCorto, "Day of Month Number", each Date.Day([Date]), Int64.Type),
+    InsertarDiaSemana = Table.AddColumn(InsertarDiaMesNumero, "Day of Week Number", each Date.DayOfWeek([Date]), Int64.Type),
+    InsertarDiaAño = Table.AddColumn(InsertarDiaSemana, "Day of Year Number", each Date.DayOfYear([Date]), Int64.Type),
+    InsertarEsFinde = Table.AddColumn(InsertarDiaAño, "Is Weekend", each if Date.DayOfWeek([Date], Day.Monday ) >= 5 then 1 else 0, Int64.Type ),
+    InsertarDiaLaboral = Table.AddColumn(InsertarEsFinde, "Is Weekday", each if Date.DayOfWeek([Date], Day.Monday ) < 5  then 1 else 0, Int64.Type ),
+    // En este paso hace la conversion de las columnas
+    RenombrarColumnasLenguaje = Table.RenameColumns(InsertarDiaLaboral, List.Zip( { List.Buffer( TraducirNombresColumnas[Ingles] ), List.Buffer( Table.Column( TraducirNombresColumnas, LenguajeCalendario ) ) } ), MissingField.Ignore )
+in
+    RenombrarColumnasLenguaje
